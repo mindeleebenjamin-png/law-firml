@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hamilton & Brooks | Attorneys at Law</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: "#0f172a",
+            accent: "#c9a24d"
+          },
+          animation: {
+            fade: "fadeIn 0.8s ease-out",
+            slide: "slideUp 0.8s ease-out"
+          },
+          keyframes: {
+            fadeIn: {
+              "0%": { opacity: "0" },
+              "100%": { opacity: "1" }
+            },
+            slideUp: {
+              "0%": { transform: "translateY(30px)", opacity: "0" },
+              "100%": { transform: "translateY(0)", opacity: "1" }
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<script>
+  // Fade IN on load
+  window.addEventListener('load', () => {
+    const overlay = document.getElementById('page-transition')
+    overlay.classList.add('opacity-0')
+    setTimeout(() => overlay.remove(), 300)
+  })
+
+  // Fade OUT on navigation
+  document.querySelectorAll('a[href]').forEach(link => {
+    link.addEventListener('click', e => {
+      const href = link.getAttribute('href')
+      if (!href.startsWith('#') && !href.startsWith('http')) {
+        e.preventDefault()
+        const overlay = document.createElement('div')
+        overlay.className =
+          'fixed inset-0 bg-white dark:bg-slate-900 z-[9999] opacity-0 transition-opacity duration-300'
+        document.body.appendChild(overlay)
+        requestAnimationFrame(() => overlay.classList.remove('opacity-0'))
+        setTimeout(() => window.location.href = href, 300)
+      }
+    })
+  })
+</script>
+
+<body class="bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-300 transition-colors">
+
+<!-- HEADER -->
+<header class="bg-primary dark:bg-slate-800 text-white sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+    <h1 class="text-xl md:text-2xl font-bold text-accent">
+      Hamilton & Brooks
+    </h1>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex space-x-8 items-center">
+      <a href="index.html" class="hover:text-accent">Home</a>
+      <a href="about.html" class="hover:text-accent">About</a>
+      <a href="practice.html" class="hover:text-accent">Practice Areas</a>
+      <a href="attorneys.html" class="hover:text-accent">Attorneys</a>
+      <a href="contact.html" class="hover:text-accent">Contact</a>
+
+      <button onclick="toggleDarkMode()" class="ml-4 border px-3 py-1 rounded">
+        🌙
+      </button>
+    </nav>
+
+    <!-- Mobile Button -->
+    <button onclick="toggleMenu()" class="md:hidden text-3xl">
+      ☰
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu"
+       class="hidden md:hidden bg-primary dark:bg-slate-800 px-6 pb-6 space-y-4">
+    <a href="index.html" class="block">Home</a>
+    <a href="about.html" class="block">About</a>
+    <a href="practice.html" class="block">Practice Areas</a>
+    <a href="attorneys.html" class="block">Attorneys</a>
+    <a href="contact.html" class="block">Contact</a>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+
+<section class="bg-primary dark:bg-slate-800 text-white">
+  <div class="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
+    <div class="animate-slide">
+      <h2 class="text-4xl md:text-5xl font-bold leading-tight">
+        Trusted Legal Representation<br>
+        When It Matters Most
+      </h2>
+      <p class="mt-6 text-gray-300 text-lg">
+        Hamilton & Brooks is a full-service law firm committed to protecting
+        the rights, interests, and futures of individuals and businesses.
+      </p>
+      <a href="contact.html"
+         class="inline-block mt-8 bg-accent text-primary px-8 py-3 font-semibold rounded hover:scale-105 transition">
+        Schedule a Confidential Consultation
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="py-24">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h3 class="text-3xl font-bold text-primary dark:text-white">
+      Why Clients Choose Us
+    </h3>
+    <p class="mt-6 max-w-3xl mx-auto">
+      Our firm is built on a foundation of integrity, strategic thinking,
+      and relentless advocacy. We deliver personalized legal solutions
+      tailored to every client’s unique circumstances.
+    </p>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-10 mt-14">
+      <div class="p-8 border dark:border-slate-700 rounded-lg">
+        <h4 class="font-semibold text-xl">25+ Years Experience</h4>
+        <p class="mt-3">Decades of proven results across complex legal matters.</p>
+      </div>
+      <div class="p-8 border dark:border-slate-700 rounded-lg">
+        <h4 class="font-semibold text-xl">Client-Focused Strategy</h4>
+        <p class="mt-3">Clear communication and tailored legal planning.</p>
+      </div>
+      <div class="p-8 border dark:border-slate-700 rounded-lg">
+        <h4 class="font-semibold text-xl">Proven Advocacy</h4>
+        <p class="mt-3">Aggressive representation inside and outside court.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="bg-primary dark:bg-slate-800 text-gray-300 py-10">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <p>© 2026 Hamilton & Brooks. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+  // Dark Mode
+  if (localStorage.theme === 'dark') {
+    document.documentElement.classList.add('dark')
+  }
+
+  function toggleDarkMode() {
+    document.documentElement.classList.toggle('dark')
+    localStorage.theme =
+      document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+  }
+
+  // Mobile Menu
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('hidden')
+  }
+</script>
+
+</body>
+<div id="page-transition"
+     class="fixed inset-0 bg-white dark:bg-slate-900 z-[9999] opacity-100 transition-opacity duration-300">
+</div>
+</html>

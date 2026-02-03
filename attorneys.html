@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hamilton & Brooks | Attorneys at Law</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: "#0f172a",
+            accent: "#c9a24d"
+          },
+          animation: {
+            fade: "fadeIn 0.8s ease-out",
+            slide: "slideUp 0.8s ease-out"
+          },
+          keyframes: {
+            fadeIn: {
+              "0%": { opacity: "0" },
+              "100%": { opacity: "1" }
+            },
+            slideUp: {
+              "0%": { transform: "translateY(30px)", opacity: "0" },
+              "100%": { transform: "translateY(0)", opacity: "1" }
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<script>
+  // Fade IN on load
+  window.addEventListener('load', () => {
+    const overlay = document.getElementById('page-transition')
+    overlay.classList.add('opacity-0')
+    setTimeout(() => overlay.remove(), 300)
+  })
+
+  // Fade OUT on navigation
+  document.querySelectorAll('a[href]').forEach(link => {
+    link.addEventListener('click', e => {
+      const href = link.getAttribute('href')
+      if (!href.startsWith('#') && !href.startsWith('http')) {
+        e.preventDefault()
+        const overlay = document.createElement('div')
+        overlay.className =
+          'fixed inset-0 bg-white dark:bg-slate-900 z-[9999] opacity-0 transition-opacity duration-300'
+        document.body.appendChild(overlay)
+        requestAnimationFrame(() => overlay.classList.remove('opacity-0'))
+        setTimeout(() => window.location.href = href, 300)
+      }
+    })
+  })
+</script>
+
+<body class="bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-300 transition-colors">
+
+<!-- HEADER -->
+<header class="bg-primary dark:bg-slate-800 text-white sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+    <h1 class="text-xl md:text-2xl font-bold text-accent">
+      Hamilton & Brooks
+    </h1>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex space-x-8 items-center">
+      <a href="index.html" class="hover:text-accent">Home</a>
+      <a href="about.html" class="hover:text-accent">About</a>
+      <a href="practice.html" class="hover:text-accent">Practice Areas</a>
+      <a href="attorneys.html" class="hover:text-accent">Attorneys</a>
+      <a href="contact.html" class="hover:text-accent">Contact</a>
+
+      <button onclick="toggleDarkMode()" class="ml-4 border px-3 py-1 rounded">
+        🌙
+      </button>
+    </nav>
+
+    <!-- Mobile Button -->
+    <button onclick="toggleMenu()" class="md:hidden text-3xl">
+      ☰
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu"
+       class="hidden md:hidden bg-primary dark:bg-slate-800 px-6 pb-6 space-y-4">
+    <a href="index.html" class="block">Home</a>
+    <a href="about.html" class="block">About</a>
+    <a href="practice.html" class="block">Practice Areas</a>
+    <a href="attorneys.html" class="block">Attorneys</a>
+    <a href="contact.html" class="block">Contact</a>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="py-24 max-w-7xl mx-auto px-6">
+
+  <!-- PAGE INTRO -->
+  <div class="max-w-3xl mb-16">
+    <h2 class="text-4xl font-bold text-primary dark:text-white">
+      Our Attorneys
+    </h2>
+    <p class="mt-6 text-lg">
+      Our attorneys are experienced legal professionals dedicated to
+      providing strategic, ethical, and results-driven representation.
+      Every client receives personalized attention and clear guidance
+      throughout the legal process.
+    </p>
+  </div>
+
+  <!-- ATTORNEY LIST -->
+  <div class="grid gap-12 md:grid-cols-2">
+
+    <!-- ATTORNEY -->
+    <div class="border dark:border-slate-700 rounded-lg p-8 animate-slide">
+      <h3 class="text-2xl font-semibold text-primary dark:text-white">
+        Ethan Judah
+      </h3>
+      <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+        Managing Partner
+      </p>
+
+      <p class="mt-4">
+        Ethan Judah focuses on corporate and commercial law, representing
+        businesses in complex transactions, litigation, and regulatory matters.
+        He is known for his strategic thinking, precision, and strong advocacy.
+      </p>
+
+      <div class="mt-6 space-y-2 text-sm">
+        <p>
+          <strong>Phone:</strong>
+          <a href="tel:+15551234567" class="hover:text-accent">
+            924-0-900000
+          </a>
+        </p>
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:judahethan8@gmail.com" class="hover:text-accent">
+            judahethan8@gmail.com
+          </a>
+        </p>
+        <p>
+          <strong>Office Location:</strong> Israel
+        </p>
+      </div>
+    </div>
+
+    <!-- ATTORNEY -->
+    <div class="border dark:border-slate-700 rounded-lg p-8 animate-slide">
+      <h3 class="text-2xl font-semibold text-primary dark:text-white">
+        Maya Noah
+      </h3>
+      <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+        Senior Attorney
+      </p>
+
+      <p class="mt-4">
+        Maya Noah specializes in family law and dispute resolution,
+        assisting clients with divorce, custody, and mediation matters.
+        She is recognized for her compassionate approach and practical guidance.
+      </p>
+
+      <div class="mt-6 space-y-2 text-sm">
+        <p>
+          <strong>Phone:</strong>
+          <a href="tel:+15559876543" class="hover:text-accent">
+            924-0-900001
+          </a>
+        </p>
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:advmaya10@gmail.com" class="hover:text-accent">
+            advmaya10@gmail.com
+          </a>
+        </p>
+        <p>
+          <strong>Office Location:</strong> Israel
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+
+
+
+<!-- FOOTER -->
+<footer class="bg-primary dark:bg-slate-800 text-gray-300 py-10">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <p>© 2026 Hamilton & Brooks. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+  // Dark Mode
+  if (localStorage.theme === 'dark') {
+    document.documentElement.classList.add('dark')
+  }
+
+  function toggleDarkMode() {
+    document.documentElement.classList.toggle('dark')
+    localStorage.theme =
+      document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+  }
+
+  // Mobile Menu
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('hidden')
+  }
+</script>
+
+</body>
+<div id="page-transition"
+     class="fixed inset-0 bg-white dark:bg-slate-900 z-[9999] opacity-100 transition-opacity duration-300">
+</div>
+
+</html>
